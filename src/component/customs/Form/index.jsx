@@ -5,19 +5,17 @@ import ButtonCard from '../../common/Button';
 
 function Form({checkOut}) {
   return (
-    <Box>
+    <Box className="animation-tb">
       <Box sx={styles.formInputs}>
-        <label for="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input type="email" id="email" />
       </Box>
       <Box sx={styles.formInputs}>
-        <label for name="name">
-          Name
-        </label>
+        <label htmlFor="name">Name</label>
         <input type="text" id="name" />
       </Box>
-      <Box>
-        <label for="Address">Address</label>
+      <Box sx={styles.formInputs}>
+        <label htmlFor="Address">Address</label>
         <input type="text" id="Address" />
       </Box>
       <ButtonCard onClick={checkOut} title="Checkout" />
@@ -28,9 +26,9 @@ const styles = {
   form: {
     display: "flex",
     flexDirection: "column",
-    my: 2,
+    my: 2.5,
     "& button": {
-      my: 3.5,
+      my: 3,
     },
   },
   formInputs: {

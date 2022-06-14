@@ -1,13 +1,26 @@
 export const styles = {
-  buttons: {
+  productItem: {
+    with: "300px",
+    py: 1,
+    cursor: "pointer",
+    "&:hover": {
+      "& p": {
+        color: "tomato",
+      },
+    },
+  },
+  img: {
+    width: "100%",
+    height: "100%",
+    objectFit: "contain",
+  },
+  footer: {
+    py: 1,
     display: "flex",
     justifyContent: "space-between",
-    p: 2,
+    alignItems: "center",
+    px: 5,
   },
-  content: {
-    display: "flex",
-    justifyContent: "center",
-    cursor: "pointer",
-}
+ 
 
 };

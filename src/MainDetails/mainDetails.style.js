@@ -1,8 +1,12 @@
 
-import { makeStyles } from '@material-ui/core/styles';
-
-
-const useStyles = makeStyles({
+const styles={
+  header:{
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems: "center",
+    borderBottom:1,
+    py:1,
+  },
   root: {
     display: "flex",
     alignItems: "center",
@@ -18,6 +22,6 @@ const useStyles = makeStyles({
       alignItems:"center",
 
   }
-});
+};
 
-export {useStyles}
+export {styles}

@@ -1,39 +1,42 @@
 import './App.css';
 import Footer from './component/common/Footer/index';
 import Header from "./component/common/Header/index";
-import ProductCard from './ProductCard/index';
-import MainDetails from './MainDetails/index';
 import  {IndexContext} from "./../src/Context/context"
 import { useEffect, useState } from 'react';
 import data from './data/data.json';
 import Cards from './component/common/Cards/Cards';
-
+import { Box } from '@mui/system';
+import { Grid, Container } from '@material-ui/core';
+import Modal from './component/customs/Modal/index';
+import _ from "lodash";
+import Products from './component/customs/Products/index';
 
 
 function App() {
   const [product,setProduct]= useState([])
   const [cartList, setCartList] = useState ([]);
-  const [showModal, setShowModal] = useState(false);
   const [total, setTotal] = useState (0);
   const [checkTotal, setCheckTotal] = useState(false);
-  const [filterValue, setFilterValue] = useState ("ALL");
+  const [clickedProduct, setClickedProduct] = useState(product[0]);
+   const [showModal, setShowModal] = useState(false);
+  const [filterValue, setFilterValue] = useState("All");
   const [orderValue, setOrderValue] = useState ("asc");
   const [dataLength, setDataLength] = useState (0);
 
   useEffect(() => {
-     const copyProducts = [...product];
-     data.map((item) => {
-       copyProducts.push(item)
-       data.amount = 0
-       data.total = 0
-     });
-     setProduct(copyProducts);
-    
+    const copyProducts = [...data];
+    copyProducts.forEach((item) => {
+      // copyProducts.push(item);
+      item.amount = 0;
+      item.total = 0;
+    });
+    setProduct(copyProducts);
+    setClickedProduct(copyProducts[0]);
   }, []);
 
 function calculateTotal(){ 
     let total = 0;
-    cartList.forEach((item) => (total += !item.total));
+    cartList.forEach((item) => (total += item.total));
     setTotal(parseFloat(total.toFixed(2)))
   }
 
@@ -51,6 +54,7 @@ useEffect(() => {
 
    function showModalHandler(product) {
     setShowModal(true)
+    setClickedProduct(product);
   }
 
    function closeModal(){
@@ -61,10 +65,12 @@ useEffect(() => {
     const copyProducts = [...product]
     const index = copyProducts.findIndex(item=>item.id===id)
     const added = copyProducts[index]
-    added.amount = !added.amount + 1
+    added.amount = added.amount + 1
     added.total = added.amount * parseFloat(added.price);
-    if(!cartList.includes(added))setCartList([...cartList,added])
-  
+    if(!cartList.includes(added)){
+        setCartList([...cartList, added]);
+        console.log(added)
+    }
     copyProducts[index] = added;
     setProduct(copyProducts)
     setCheckTotal(!checkTotal)
@@ -75,14 +81,15 @@ useEffect(() => {
   function removeHandler(id){
     const copyProducts = [...product]
     const index = copyProducts.findIndex(item=>item.id===id)
-    const addedCart = copyProducts[index]
-    addedCart.amount = !addedCart.amount - 1
-    addedCart.total = addedCart.amount * parseFloat(addedCart.price);
-    if(addedCart.amount === 0){
+    const added = copyProducts[index]
+    added.amount = added.amount - 1
+    added.total = added.amount * parseFloat(added.price);
+    if(added.amount === 0){
       const editedCart = cartList.filter(item=>item.id !== id)
       setCartList(editedCart)
     }
-    copyProducts[index] = addedCart;
+  
+    copyProducts[index] = added;
     setProduct(copyProducts)
     setCheckTotal(!checkTotal)
   }
@@ -107,16 +114,33 @@ useEffect(() => {
         }}
       >
         <Header />
-
-        <MainDetails />
-        <ProductCard />
-  
-          <Cards />
-       
-        <Footer />
+        <Box sx={styles.main}>
+          <Container sx={{ flex: 1 }}>
+            <Grid container justifyContent="center">
+              <Grid item xs={12} lg={9}>
+                <Products />
+              </Grid>
+              <Grid item xs={12} sm={5} lg={3}>
+                <Cards />
+              </Grid>
+            </Grid>
+          </Container>
+          <Footer />
+        </Box>
+        {showModal && <Modal product={clickedProduct} />}
       </IndexContext.Provider>
     </>
   );
+}
+
+
+const styles ={
+  main:{
+    width:"100%",
+    height:"100%",
+    display:"flex",
+    flexDirection:"column",
+  }
 }
 
 export default App;

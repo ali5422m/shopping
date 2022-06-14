@@ -9,18 +9,11 @@ function ProductCard() {
   return (
     <>
       <Container>
-        <Grid container spacing={4} >
+        <Grid container spacing={4}  >
           {product.map((item) => (
             <Grid item key={item.id}>
               <MediaCard
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                url={item.url}
-                description={item.description}
-                price={item.price}
+                product={item}
               />
             </Grid>
           ))}

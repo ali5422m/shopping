@@ -3,21 +3,21 @@ import { IndexContext } from "../../../Context/context";
 import CardCart from './../../customs/CardCart/index';
 import { Box, Typography } from "@mui/material";
 import Form from './../../customs/Form/index';
-import ButtonCard from './../Button/index';
+import Footer from "./Footer/index";
 
 
 
-function Cards({toggleForm}) {
-    const {cartList,total} = useContext(IndexContext)
-    const [showForm,setShowForm] = useState(false)
+function Cards() {
+  const { cartList } = useContext(IndexContext);
+  const [showForm, setShowForm] = useState(false);
 
-    function toggleForm(){
-        setShowForm(true)
-    }
-    function checkOut(){
-        alert("will be sent")
-        setShowForm(false)
-    }
+  function toggleForm() {
+    setShowForm(true);
+  }
+  function checkOut() {
+    alert("will be sent");
+    setShowForm(false);
+  }
   return (
     <>
       <Box sx={styles.header}>
@@ -27,14 +27,14 @@ function Cards({toggleForm}) {
             : `You have ${cartList.length} in the Cart`}
         </Typography>
       </Box>
-      <Box sx={styles.footer} >
-        <Typography>Total: ${total}</Typography>
-        <ButtonCard onclick={toggleForm} title="Proceed" />
-      </Box>
+
       {cartList.map((item) => (
         <CardCart key={item.id} product={item} />
       ))}
-      {cartList.length ? toggleForm={toggleForm}: null}
+
+      {cartList.length ? (
+        <Footer toggleForm={toggleForm} />
+      ) : null}
       {showForm && <Form checkOut={checkOut} />}
     </>
   );

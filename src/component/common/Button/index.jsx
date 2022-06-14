@@ -2,10 +2,12 @@ import { Button } from '@material-ui/core'
 import {styles} from "./button.style"
 import React from 'react'
 
-function ButtonCard({title}) {
+function ButtonCard({ title, onClick }) {
   return (
-    <Button type="submit" style={styles.buttonCard}>{title}</Button>
-  )
+    <Button  onClick={onClick} style={styles.buttonCard}>
+      {title}
+    </Button>
+  );
 }
 
 export default ButtonCard

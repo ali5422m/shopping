@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     background: "#203040",
     color: theme.palette.common.white,
-    height: 58,
+    height: 64,
     alignItems: "center",
     display:"flex",
     paddingLeft: 12,

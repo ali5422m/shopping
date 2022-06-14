@@ -3,24 +3,26 @@ import { Box, Typography } from "@mui/material";
 import { IndexContext } from "../../../Context/context";  
 import ButtonCard from './../../common/Button/index';
 
-function CardCart({url,description,price,id,amount}) {
-     const { removeHandler } = useContext(IndexContext);
+function CardCart({ product }) {
+  const { removeHandler } = useContext(IndexContext);
   return (
-    <Box sx={styles.card} className="animation-fade-lr">
-      <Box sx={styles.cover} component="img" src={url} />
+    <Box sx={styles.card} className="animation-lr">
+      <Box sx={styles.cover} component="img" src={product.url} />
       <Box sx={styles.details}>
         <Typography sx={{ textAlign: "center" }}>
-          {description}
+          {product.description}
         </Typography>
         <Box sx={styles.footer}>
           <Box sx={styles.footerElems}>
             <Typography>
-              ${price} x {amount}
+              ${product.price} x {product.amount}
             </Typography>
-            <ButtonCard
-              onClick={() => removeHandler(id)}
-              title="remove"
-            />
+            <Box sx={styles.button}>
+              <ButtonCard
+                onClick={() => removeHandler(product.id)}
+                title="remove"
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -56,6 +58,9 @@ const styles = {
     gap: 1,
     position: "relative",
     left: "20%",
+  },
+  button: {
+    backgroundColor: "red",
   },
 };
 

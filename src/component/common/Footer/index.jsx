@@ -11,7 +11,7 @@ function Footer() {
      const theme = createTheme();
 
   return (
-    <Box sx={{marginTop:"3rem"}}>
+    <Box sx={{marginTop:"35.9rem"}}>
       <ThemeProvider theme={theme}>
         <Typography className={classes.root}>All right is reserved</Typography>
       </ThemeProvider>

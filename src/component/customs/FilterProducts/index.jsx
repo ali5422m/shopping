@@ -1,4 +1,4 @@
-import React,{useContext,useEffect} from 'react'
+import React,{useContext} from 'react'
 import { IndexContext } from "../../../Context/context";
 import { Grid } from "@mui/material";
 import _ from "lodash";

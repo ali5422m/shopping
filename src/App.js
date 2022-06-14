@@ -19,8 +19,8 @@ function App() {
   const [checkTotal, setCheckTotal] = useState(false);
   const [clickedProduct, setClickedProduct] = useState(product[0]);
    const [showModal, setShowModal] = useState(false);
-  const [filterValue, setFilterValue] = useState("All");
-  const [orderValue, setOrderValue] = useState ("asc");
+  const [filterValue, setFilterValue] = useState("ALL");
+  const [orderValue, setOrderValue] = useState("asc");
   const [dataLength, setDataLength] = useState (0);
 
   useEffect(() => {

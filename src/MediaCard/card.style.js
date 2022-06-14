@@ -20,6 +20,7 @@ export const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     px: 5,
+    whiteSpace: "nowrap"
   },
  
 

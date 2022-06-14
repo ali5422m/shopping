@@ -19,7 +19,7 @@ export const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    px: 5,
+    px:1,
     whiteSpace: "nowrap"
   },
  
